@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+class TinhTong extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = { a : 0 , b: 0};
+    this.changedA = this.changedA.bind(this);
+    this.changedB = this.changedB.bind(this);
+  }
+  changedA(e) {
+    this.setState({ a: e.target.value });
+  }
+  changedB(e) {
+    this.setState({ b: e.target.value});
+  }
+  Sum()
+  {
+    return Number(this.state.a) + Number(this.state.b);
+  }
+  render(){
   return (
+    
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <div className="App-header">
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Tính tổng với <code>Reactjs</code>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </div>
+      <div className="flexstyle">
+      <input className="input1" type="number" onChange={this.changedA} defaultValue={this.state.a}/>&nbsp; &nbsp; + &nbsp; &nbsp;<input className="input1" type="number"  onChange={this.changedB} defaultValue={this.state.b}/> &nbsp; &nbsp; = &nbsp; &nbsp;
+      <div
+          dangerouslySetInnerHTML={ {__html: this.Sum()}}
+        /></div>
     </div>
   );
+  }
 }
 
-export default App;
+export default TinhTong;
